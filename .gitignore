@@ -1,0 +1,17 @@
+# macOs settings (why it still exists ...)
+.DS_Store
+
+# Node modules (prefers a clean npm install)
+node_modules
+
+# Environment configs
+.env
+.env.*
+!.env.example
+
+# VsCode settings (prefers a custom folder to avoid disturb user settings: /project-settings/...)
+.vscode/
+
+# No logs
+*.log*
+

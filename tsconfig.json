@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "commonjs",
+    "skipLibCheck": true,
+
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    "esModuleInterop": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "outDir": "build",
+    "baseUrl": ".",
+    "paths": {
+      "@app-cli/*": ["src/core/application/cli/*"],
+      "@app-http/*": ["src/infra/client/*"],
+      "@core/*": ["src/core/*"],
+      "@core-usecase/*": ["src/core/usecase/*"],
+      "@core-router/*": ["src/core/router/*"],
+      "@core-ext/*": ["src/core-ext/*"],
+      "@domain/*": ["src/domain/*"],
+      "@domain-ports/*": ["src/domain/ports/*"],
+      "@domain-services/*": ["src/domain/services/*"],
+      "@domain-usecase/*": ["src/domain/usecase/*"],
+      "@domain-models/*": ["src/domain/models/*"],
+      "@infra/*": ["src/infra/*"],
+    }
+  },
+  "include": ["src"]
+}
