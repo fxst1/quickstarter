@@ -15,3 +15,6 @@ node_modules
 # No logs
 *.log*
 
+# Remove demo json
+.myrepo.json
+

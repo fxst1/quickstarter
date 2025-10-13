@@ -1,25 +1,23 @@
 import { BasicUseCaseAdapter } from "@core-usecase/BaseUseCaseAdapter";
 import { BasicUseCaseExecutor } from "@core-usecase/BaseUseCaseExecutor";
-import { StaticHelloWorldRepository } from "@infra/staticrepo/HelloWorldRepository";
 import { JSONResponseAdapter, JSONResponseFailureAdapter } from "@core-ext/http/adapters/JSONResponseAdapter";
 import { HttpRequest } from "@core-ext/http/HttpRequest";
 import { HttpRoute } from "@core-ext/http/HttpRoute";
 import { HttpRouter } from "@core-ext/http/HttpRouter";
 import { Context } from "@core-router/Context";
-import { HelloWorldService } from "@domain-services/HelloWorldService";
 import { CreateHelloWorldInput, CreateHelloWorldUsecase } from "@domain-usecase/CreateHelloWorld";
 import { ListHelloWorldInput, ListHelloWorldUsecase } from "@domain-usecase/ListHelloWorld";
 import { UpdateHelloWorldInput, UpdateHelloWorldUsecase } from "@domain-usecase/UpdateHelloWorld";
 import { GetHelloWorldInput, GetHelloWorldUsecase } from "@domain-usecase/GetHelloWorld";
 import { HelloWorldCreateModel } from "@domain/models/HelloWorld";
+import { helloWorldService } from "@infra/index";
 
-const HelloWorldServiceInstance = new HelloWorldService(new StaticHelloWorldRepository());
 
 const GetHelloWorldHttpRoute = new HttpRoute({
         methods: ['GET'],
     },
     new BasicUseCaseExecutor(
-        new GetHelloWorldUsecase(HelloWorldServiceInstance),
+        new GetHelloWorldUsecase(helloWorldService),
         new BasicUseCaseAdapter(
             (context: Context<HttpRequest, unknown>): GetHelloWorldInput => {
                 return {
@@ -36,7 +34,7 @@ const UpdateHelloWorldHttpRoute = new HttpRoute({
         methods: ['PATCH'],
     },
     new BasicUseCaseExecutor(
-        new UpdateHelloWorldUsecase(HelloWorldServiceInstance),
+        new UpdateHelloWorldUsecase(helloWorldService),
         new BasicUseCaseAdapter(
             async (context: Context<HttpRequest, unknown>): Promise<UpdateHelloWorldInput> => {
                 const dryMode = context.request.url.searchParams.get('dry');
@@ -56,7 +54,7 @@ const CreateHelloWorldHttpRoute = new HttpRoute({
         methods: ['PUT'],
     },
     new BasicUseCaseExecutor(
-        new CreateHelloWorldUsecase(HelloWorldServiceInstance),
+        new CreateHelloWorldUsecase(helloWorldService),
         new BasicUseCaseAdapter(
             async (context: Context<HttpRequest, unknown>): Promise<CreateHelloWorldInput> => {
                 const dryMode = context.request.url.searchParams.get('dry');
@@ -75,7 +73,7 @@ const ListHelloWorldHttpRoute = new HttpRoute({
         methods: ['GET'],
     },
     new BasicUseCaseExecutor(
-        new ListHelloWorldUsecase(HelloWorldServiceInstance),
+        new ListHelloWorldUsecase(helloWorldService),
         new BasicUseCaseAdapter(
             async (context: Context<HttpRequest, unknown>): Promise<ListHelloWorldInput> => {
                 return {

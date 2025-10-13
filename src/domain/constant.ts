@@ -1,0 +1,3 @@
+/**
+ * Defines your constants configurations
+ */
