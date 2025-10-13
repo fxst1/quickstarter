@@ -11,6 +11,7 @@ import { CreateHelloWorldInput, CreateHelloWorldUsecase } from "@domain-usecase/
 import { ListHelloWorldInput, ListHelloWorldUsecase } from "@domain-usecase/ListHelloWorld";
 import { UpdateHelloWorldInput, UpdateHelloWorldUsecase } from "@domain-usecase/UpdateHelloWorld";
 import { GetHelloWorldInput, GetHelloWorldUsecase } from "@domain-usecase/GetHelloWorld";
+import { HelloWorldCreateModel } from "@domain/models/HelloWorld";
 
 const HelloWorldServiceInstance = new HelloWorldService(new StaticHelloWorldRepository());
 
@@ -61,7 +62,7 @@ const CreateHelloWorldHttpRoute = new HttpRoute({
                 const dryMode = context.request.url.searchParams.get('dry');
                 return {
                     dry: dryMode === 'false' ? false : true,
-                    create: await context.request.json() ?? {}
+                    create: await context.request.json() as HelloWorldCreateModel
                 }
             },
             new JSONResponseAdapter(200),
