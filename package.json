@@ -5,23 +5,14 @@
   "type": "module",
   "main": "./src/index.js",
   "scripts": {
-    "lint": "eslint",
-    "cli": "tsx ./src/apps/cli/app.ts",
-    "http": "tsx ./src/apps/http/app.ts"
+    "lint": "eslint"
   },
   "devDependencies": {
     "@eslint/js": "^9.37.0",
-    "@types/express": "^5.0.3",
-    "@types/node": "^20.19.19",
     "eslint": "^9.37.0",
-    "express": "^5.1.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.0"
-  },
-  "dependencies": {
-    "@types/body-parser": "^1.19.6",
-    "body-parser": "^2.2.0"
   }
 }
